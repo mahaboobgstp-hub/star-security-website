@@ -18,7 +18,14 @@ const industries = [
 ];
 
 function App(){
-  const [form,setForm]=useState({name:"",company:"",email:"",message:"",website:""});
+  const [form,setForm]=useState({
+  name:"",
+  company:"",
+  email:"",
+  phone:"",
+  message:"",
+  website:""
+});
   const [status,setStatus]=useState("idle"),[notice,setNotice]=useState("");
   const update=e=>setForm({...form,[e.target.name]:e.target.value});
   async function submitForm(e){
@@ -27,7 +34,14 @@ function App(){
       const response=await fetch("/api/contact",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(form)});
       const result=await response.json().catch(()=>({}));
       if(!response.ok)throw new Error(result.error||"Unable to send your enquiry. Please try again.");
-      setStatus("success");setNotice("Thank you. Your enquiry has been sent to our team.");
+      setForm({
+  name:"",
+  company:"",
+  email:"",
+  phone:"",
+  message:"",
+  website:""
+});
       setForm({name:"",company:"",email:"",message:"",website:""});
     }catch(err){setStatus("error");setNotice(err.message||"Something went wrong. Please try again.");}
   }
@@ -92,6 +106,20 @@ function App(){
               <label>Company / Organisation <i>*</i><input name="company" value={form.company} onChange={update} placeholder="Company name" required maxLength="150"/></label>
             </div>
             <label>Email Address <i>*</i><input name="email" type="email" value={form.email} onChange={update} placeholder="you@company.com" required maxLength="150"/></label>
+            <label>Mobile Number <i>*</i>
+  <input
+    name="phone"
+    type="tel"
+    inputMode="tel"
+    value={form.phone}
+    onChange={update}
+    placeholder="+91 98765 43210"
+    required
+    maxLength="25"
+    pattern="[0-9+() -]{8,25}"
+    title="Please enter a valid mobile number"
+  />
+</label>
             <label>Your Requirements <i>*</i><textarea name="message" value={form.message} onChange={update} placeholder="Tell us about your security or staffing requirements..." rows="3" required maxLength="3000"/></label>
             <div className="hp-field" aria-hidden="true"><label>Leave empty<input name="website" value={form.website} onChange={update} tabIndex="-1" autoComplete="off"/></label></div>
             <button className="btn primary send-btn" type="submit" disabled={status==="sending"}>{status==="sending"?"Sending...":"✉  Send Enquiry"}</button>

@@ -34,15 +34,21 @@ function App(){
       const response=await fetch("/api/contact",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(form)});
       const result=await response.json().catch(()=>({}));
       if(!response.ok)throw new Error(result.error||"Unable to send your enquiry. Please try again.");
+      
       setForm({
-  name:"",
-  company:"",
-  email:"",
-  phone:"",
-  message:"",
-  website:""
-});
-      setForm({name:"",company:"",email:"",message:"",website:""});
+        name: "",
+        company: "",
+        email: "",
+        phone: "",
+        message: "",
+        website: ""
+      });
+
+      setStatus("success");
+      setNotice(
+        "Your enquiry has been sent successfully. Our team will contact you shortly."
+      );
+
     }catch(err){setStatus("error");setNotice(err.message||"Something went wrong. Please try again.");}
   }
   return <>

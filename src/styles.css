@@ -1342,3 +1342,23 @@ h1, h2, h3, p {
     animation-duration: .01ms !important;
   }
 }
+@media (max-width: 650px) {
+  .header-logo {
+    grid-row: 1;
+    grid-column: 1;
+  }
+
+  .menu-toggle {
+    grid-row: 1;
+    grid-column: 2;
+  }
+
+  .header-cta {
+    grid-row: 1;
+    grid-column: 3;
+  }
+
+  .navigation {
+    grid-row: 2;
+  }
+}

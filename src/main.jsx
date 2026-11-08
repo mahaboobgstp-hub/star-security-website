@@ -76,7 +76,7 @@ function App(){
         <div className="office-photo"><img src="/star-office-branding.jpg" alt="The STAR Security & Staffing sign on a portion of a glass office building"/></div>
         <div className="about-copy">
           <div className="kicker">ABOUT STAR</div>
-          <h2>A New Organisation with<br/>10 Years of Industry Experience</h2>
+          <h2>An Organisation with<br/>10 Years of Industry Experience</h2>
           <p>STAR Security & Staffing is a newly established organisation backed by 10 years of industry experience, including providing security services to hospitals, corporate companies, manufacturing industries, educational institutions and other establishments.</p>
           <div className="about-highlights">
             <div><b>◎</b><span>Experienced<br/>Leadership</span></div>
